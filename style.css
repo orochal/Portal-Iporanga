@@ -1,8 +1,3 @@
-/* ==========================================================
-   Portal Iporanga - folha de estilos
-   Paleta: verde (Mata Atlântica), azul (rio Ribeira), amarelo (ouro),
-   marrom (terra e casario de pau a pique) e bege (taipa).
-   ========================================================== */
 
 :root {
     --bosque: #1e3a2f;      /* verde-escuro: cabeçalho e títulos */
@@ -21,9 +16,7 @@
     --fonte-titulo: Georgia, "Times New Roman", serif;
     --fonte-texto: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
 }
-
-/* ---------- Base ---------- */
-
+/*  Base */
 *,
 *::before,
 *::after {
@@ -51,7 +44,7 @@ a:focus-visible {
     outline-offset: 2px;
 }
 
-/* ---------- Cabeçalho e menu ---------- */
+/*  Cabeçalho e menu */
 
 body > header {
     display: flex;
@@ -104,7 +97,7 @@ nav a:focus-visible {
     outline-color: var(--ouro-claro);
 }
 
-/* ---------- Conteúdo principal ---------- */
+/*  Conteúdo principal ---------- */
 
 main {
     flex: 1;
@@ -171,7 +164,7 @@ main a:hover {
     color: var(--rio-escuro);
 }
 
-/* ---------- Cartões (hospedagens, guias, agências) ---------- */
+/*  Cartões (hospedagens, guias, agências) */
 
 section:has(> article ul) {
     display: grid;
@@ -209,7 +202,7 @@ article:has(ul) li {
     overflow-wrap: anywhere;
 }
 
-/* ---------- Rodapé ---------- */
+/*  Rodapé  */
 
 body > footer {
     padding: 2rem clamp(1rem, 4vw, 2.5rem);
@@ -230,7 +223,7 @@ footer a:focus-visible {
     outline-color: var(--ouro-claro);
 }
 
-/* ---------- Telas pequenas ---------- */
+/*  Telas pequenas  */
 
 @media (max-width: 40rem) {
     body {
