@@ -1,0 +1,258 @@
+/* ==========================================================
+   Portal Iporanga - folha de estilos
+   Paleta: verde (Mata Atlântica), azul (rio Ribeira), amarelo (ouro),
+   marrom (terra e casario de pau a pique) e bege (taipa).
+   ========================================================== */
+
+:root {
+    --bosque: #1e3a2f;      /* verde-escuro: cabeçalho e títulos */
+    --musgo: #3e6b4d;       /* verde médio: detalhes dos cartões */
+    --bege: #f3ecdd;        /* bege: fundo da página, cor da taipa */
+    --papel: #fffdf8;       /* bege bem claro: fundo dos cartões */
+    --rio: #1f5f8b;         /* azul: links no texto, cor do rio */
+    --rio-escuro: #154468;  /* azul-escuro: links ao passar o mouse */
+    --ouro: #d9a726;        /* amarelo: filetes e destaques */
+    --ouro-claro: #f0cd6e;  /* amarelo claro: destaques sobre fundo escuro */
+    --terra: #4a3524;       /* marrom: rodapé */
+    --tinta: #2b2a24;       /* texto principal */
+    --tinta-suave: #5a5244; /* texto secundário */
+    --linha: #ddd2bc;       /* bordas discretas */
+
+    --fonte-titulo: Georgia, "Times New Roman", serif;
+    --fonte-texto: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bege);
+    color: var(--tinta);
+    font-family: var(--fonte-texto);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--ouro);
+    outline-offset: 2px;
+}
+
+/* ---------- Cabeçalho e menu ---------- */
+
+body > header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+    padding: 1rem clamp(1rem, 4vw, 2.5rem);
+    background: var(--bosque);
+    color: var(--bege);
+    border-bottom: 4px solid var(--ouro);
+}
+
+body > header strong {
+    font-family: var(--fonte-titulo);
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 2px solid transparent;
+    color: var(--bege);
+    text-decoration: none;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+nav a:hover {
+    color: var(--ouro-claro);
+    border-bottom-color: var(--ouro-claro);
+}
+
+nav a[aria-current="page"] {
+    border-bottom-color: var(--ouro);
+    font-weight: 600;
+}
+
+nav a:focus-visible {
+    outline-color: var(--ouro-claro);
+}
+
+/* ---------- Conteúdo principal ---------- */
+
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 2.5rem clamp(1rem, 4vw, 2rem) 3.5rem;
+}
+
+main p,
+main li {
+    max-width: 68ch;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--fonte-titulo);
+    line-height: 1.2;
+    color: var(--bosque);
+}
+
+h1 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(2rem, 1rem + 3.5vw, 2.9rem);
+}
+
+main > h1 + p {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: var(--tinta-suave);
+}
+
+h2 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.45rem, 1rem + 1.5vw, 1.85rem);
+}
+
+h3 {
+    margin: 1.75rem 0 0.4rem;
+    font-size: 1.2rem;
+}
+
+main section {
+    margin-top: 2.75rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--linha);
+}
+
+main ul {
+    padding-left: 1.25rem;
+}
+
+main li {
+    margin: 0.4rem 0;
+}
+
+main a {
+    color: var(--rio);
+    text-underline-offset: 0.2em;
+}
+
+main a:hover {
+    color: var(--rio-escuro);
+}
+
+/* ---------- Cartões (hospedagens, guias, agências) ---------- */
+
+section:has(> article ul) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: 1rem;
+}
+
+section:has(> article ul) > h2,
+section:has(> article ul) > p {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+
+article:has(ul) {
+    padding: 1rem 1.25rem;
+    background: var(--papel);
+    border: 1px solid var(--linha);
+    border-left: 4px solid var(--musgo);
+    border-radius: 0.375rem;
+}
+
+article:has(ul) h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.15rem;
+}
+
+article:has(ul) ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+article:has(ul) li {
+    margin: 0.3rem 0;
+    overflow-wrap: anywhere;
+}
+
+/* ---------- Rodapé ---------- */
+
+body > footer {
+    padding: 2rem clamp(1rem, 4vw, 2.5rem);
+    background: var(--terra);
+    color: #eadfc8;
+    border-top: 4px solid var(--ouro);
+}
+
+footer p {
+    margin: 0.25rem 0;
+}
+
+footer a {
+    color: var(--ouro-claro);
+}
+
+footer a:focus-visible {
+    outline-color: var(--ouro-claro);
+}
+
+/* ---------- Telas pequenas ---------- */
+
+@media (max-width: 40rem) {
+    body {
+        font-size: 1rem;
+    }
+
+    body > header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        gap: 0 0.25rem;
+    }
+
+    nav a {
+        padding: 0.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
