@@ -1,250 +1,322 @@
+/* Portal Iporanga - folha de estilos
 
-:root {
-    --bosque: #1e3a2f;      /* verde-escuro: cabeçalho e títulos */
-    --musgo: #3e6b4d;       /* verde médio: detalhes dos cartões */
-    --bege: #f3ecdd;        /* bege: fundo da página, cor da taipa */
-    --papel: #fffdf8;       /* bege bem claro: fundo dos cartões */
-    --rio: #1f5f8b;         /* azul: links no texto, cor do rio */
-    --rio-escuro: #154468;  /* azul-escuro: links ao passar o mouse */
-    --ouro: #d9a726;        /* amarelo: filetes e destaques */
-    --ouro-claro: #f0cd6e;  /* amarelo claro: destaques sobre fundo escuro */
-    --terra: #4a3524;       /* marrom: rodapé */
-    --tinta: #2b2a24;       /* texto principal */
-    --tinta-suave: #5a5244; /* texto secundário */
-    --linha: #ddd2bc;       /* bordas discretas */
+   Paleta:
+   verde-escuro  #1e3a2f  cabeçalho e títulos
+   verde médio   #3e6b4d  detalhe dos cartões
+   azul          #1f5f8b  links (rio Ribeira); #154468 ao passar o mouse
+   amarelo       #d9a726  filetes e destaques; #f0cd6e sobre fundo escuro
+   marrom        #4a3524  rodapé
+   bege          #f3ecdd  fundo da página; #fffdf8 nos cartões; #ddd2bc nas bordas
+   texto         #2b2a24  principal; #5a5244 secundário
+*/
 
-    --fonte-titulo: Georgia, "Times New Roman", serif;
-    --fonte-texto: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-/*  Base */
-*,
-*::before,
-*::after {
+/* Base */
+
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 html {
-    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
 }
 
+.span {
+    color: #e58b38;
+}
 body {
-    margin: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: var(--bege);
-    color: var(--tinta);
-    font-family: var(--fonte-texto);
-    font-size: 1.0625rem;
-    line-height: 1.65;
+    background: #f3ecdd;
+    color: #2b2a24;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
 }
 
-a:focus-visible {
-    outline: 3px solid var(--ouro);
-    outline-offset: 2px;
+main {
+    flex: 1;
 }
 
-/*  Cabeçalho e menu */
+
+/* Cabeçalho e menu */
 
 body > header {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.75rem 2rem;
-    padding: 1rem clamp(1rem, 4vw, 2.5rem);
-    background: var(--bosque);
-    color: var(--bege);
-    border-bottom: 4px solid var(--ouro);
+    gap: 1rem;
+    padding: 1.2rem 5%;
+    background: #1e3a2f;
+    color: #f3ecdd;
+    border-bottom: 4px solid #d9a726;
 }
 
 body > header strong {
-    font-family: var(--fonte-titulo);
+    font-family: Georgia, "Times New Roman", serif;
     font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
+    font-weight: bold;
 }
 
-nav ul {
+body > header strong span {
+    color: #e58b38;
+    font-style: italic;
+}
+
+body > header nav ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.25rem 0.5rem;
-    margin: 0;
-    padding: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 1.2rem;
     list-style: none;
 }
 
-nav a {
-    display: block;
-    padding: 0.5rem 0.75rem;
-    border-bottom: 2px solid transparent;
-    color: var(--bege);
+body > header nav a {
+    color: #f3ecdd;
     text-decoration: none;
-    transition: color 0.15s, border-color 0.15s;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
 }
 
-nav a:hover {
-    color: var(--ouro-claro);
-    border-bottom-color: var(--ouro-claro);
+body > header nav a:hover,
+body > header nav a[aria-current="page"] {
+    color: #f0cd6e;
 }
 
-nav a[aria-current="page"] {
-    border-bottom-color: var(--ouro);
-    font-weight: 600;
+body > header nav a[aria-current="page"] {
+    font-weight: bold;
 }
 
-nav a:focus-visible {
-    outline-color: var(--ouro-claro);
+
+/* Capa (foto de fundo no topo de cada página) */
+
+.capa {
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 3rem 8%;
+    background-color: #1e3a2f;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.35),
+        rgba(0, 0, 0, 0.65)
+    );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fffdf8;
 }
 
-/*  Conteúdo principal ---------- */
+.capa h1 {
+    max-width: 850px;
+    margin-bottom: 0.8rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+}
 
-main {
-    flex: 1;
+.capa p {
+    max-width: 650px;
+    font-size: 1.1rem;
+    color: #fffdf8;
+}
+
+
+/* Fotos: ficam na mesma pasta do style.css */
+
+.capa-home {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+        url("capa-home.jpg.jpg");
+}
+
+.capa-sobre {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+        url("capa-sobre.jpg.jpg");
+}
+
+.capa-atracoes {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+        url("capa-atracoes.jpg.jpg");
+}
+
+.capa-servicos {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+        url("capa-servicos.jpg.jpg");
+}
+
+.capa-anuncios {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+        url("capa-anuncios.jpg.jpg");
+}
+
+.capa-contato {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+        url("capa-contato.jpg.jpg");
+}
+
+
+/* Conteúdo: margens laterais e espaço para respirar */
+
+.conteudo {
     width: 100%;
     max-width: 62rem;
     margin: 0 auto;
-    padding: 2.5rem clamp(1rem, 4vw, 2rem) 3.5rem;
+    padding: 3rem clamp(1.2rem, 5%, 3rem) 4.5rem;
 }
 
-main p,
-main li {
-    max-width: 68ch;
+.conteudo section {
+    margin-bottom: 2.5rem;
 }
 
-h1,
-h2,
-h3 {
-    font-family: var(--fonte-titulo);
-    line-height: 1.2;
-    color: var(--bosque);
-}
-
-h1 {
-    margin: 0 0 0.75rem;
-    font-size: clamp(2rem, 1rem + 3.5vw, 2.9rem);
-}
-
-main > h1 + p {
-    margin-top: 0;
-    font-size: 1.2rem;
-    color: var(--tinta-suave);
-}
-
-h2 {
-    margin: 0 0 0.75rem;
-    font-size: clamp(1.45rem, 1rem + 1.5vw, 1.85rem);
-}
-
-h3 {
-    margin: 1.75rem 0 0.4rem;
-    font-size: 1.2rem;
-}
-
-main section {
-    margin-top: 2.75rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--linha);
-}
-
-main ul {
-    padding-left: 1.25rem;
-}
-
-main li {
-    margin: 0.4rem 0;
-}
-
-main a {
-    color: var(--rio);
-    text-underline-offset: 0.2em;
-}
-
-main a:hover {
-    color: var(--rio-escuro);
-}
-
-/*  Cartões (hospedagens, guias, agências) */
-
-section:has(> article ul) {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
-    gap: 1rem;
-}
-
-section:has(> article ul) > h2,
-section:has(> article ul) > p {
-    grid-column: 1 / -1;
+.conteudo section:last-child {
     margin-bottom: 0;
 }
 
-article:has(ul) {
-    padding: 1rem 1.25rem;
-    background: var(--papel);
-    border: 1px solid var(--linha);
-    border-left: 4px solid var(--musgo);
-    border-radius: 0.375rem;
+
+/* Segurança: se alguma página ainda estiver sem a capa, o texto mantém as margens */
+
+main > section:not(.capa) {
+    width: 100%;
+    max-width: 62rem;
+    margin: 0 auto 2.5rem;
+    padding: 2rem clamp(1.2rem, 5%, 3rem);
 }
 
-article:has(ul) h3 {
-    margin: 0 0 0.5rem;
-    font-size: 1.15rem;
+
+/* Textos */
+
+h2,
+h3 {
+    color: #1e3a2f;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.3;
 }
 
-article:has(ul) ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+h2 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
 }
 
-article:has(ul) li {
-    margin: 0.3rem 0;
-    overflow-wrap: anywhere;
+h3 {
+    margin: 1.5rem 0 0.7rem;
+    font-size: 1.3rem;
 }
 
-/*  Rodapé  */
+p {
+    margin-bottom: 1rem;
+}
+
+ul {
+    margin: 1rem 0 1rem 1.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+main a {
+    color: #1f5f8b;
+    text-decoration: none;
+}
+
+main a:hover {
+    color: #154468;
+    text-decoration: underline;
+}
+
+
+/* Cartões (hospedagens, guias, agências) */
+
+.conteudo section:has(> article),
+.conteudo article {
+    border: 1px solid #ddd2bc;
+    border-left: 4px solid #3e6b4d;
+    border-radius: 8px;
+    background: #fffdf8;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.conteudo article h2,
+.conteudo article h3 {
+    margin-top: 0;
+}
+
+
+/* Rodapé */
 
 body > footer {
-    padding: 2rem clamp(1rem, 4vw, 2.5rem);
-    background: var(--terra);
-    color: #eadfc8;
-    border-top: 4px solid var(--ouro);
+    margin-top: auto;
+    padding: 1.5rem 5%;
+    background: #4a3524;
+    color: #f3ecdd;
+    text-align: center;
 }
 
-footer p {
-    margin: 0.25rem 0;
+body > footer p {
+    margin-bottom: 0.4rem;
 }
 
-footer a {
-    color: var(--ouro-claro);
+body > footer a {
+    color: #f0cd6e;
+    text-decoration: none;
 }
 
-footer a:focus-visible {
-    outline-color: var(--ouro-claro);
+body > footer a:hover {
+    text-decoration: underline;
 }
 
-/*  Telas pequenas  */
+
+/* Telas pequenas */
 
 @media (max-width: 40rem) {
-    body {
+    body > header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    body > header nav ul {
+        gap: 0.7rem 1rem;
+    }
+
+    .capa {
+        min-height: 300px;
+        padding: 2rem 1.3rem;
+    }
+
+    .capa h1 {
+        font-size: 2rem;
+    }
+
+    .capa p {
         font-size: 1rem;
     }
 
-    body > header {
-        flex-direction: column;
-        align-items: flex-start;
+    .conteudo {
+        padding: 2rem 1.2rem 3rem;
     }
 
-    nav ul {
-        gap: 0 0.25rem;
-    }
-
-    nav a {
-        padding: 0.5rem;
+    main > section:not(.capa) {
+        padding: 1.5rem 1.2rem;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
     * {
         transition: none !important;
     }
