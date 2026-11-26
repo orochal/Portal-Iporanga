@@ -22,9 +22,6 @@ html {
     scroll-behavior: smooth;
 }
 
-.span {
-    color: #e58b38;
-}
 body {
     min-height: 100vh;
     display: flex;
@@ -49,9 +46,10 @@ body > header {
     justify-content: space-between;
     gap: 1rem;
     padding: 1.2rem 5%;
-    background: #1e3a2f;
+    background: rgba(30, 58, 47, 0.95);
     color: #f3ecdd;
     border-bottom: 4px solid #d9a726;
+    backdrop-filter: blur(3px);
 }
 
 body > header strong {
@@ -237,21 +235,49 @@ main a:hover {
 
 /* Cartões (hospedagens, guias, agências) */
 
-.conteudo section:has(> article),
-.conteudo article {
+.conteudo section:has(> article ul) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: 1.25rem;
+}
+
+.conteudo section:has(> article ul) > h2,
+.conteudo section:has(> article ul) > p {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+
+.conteudo article:has(ul) {
+    padding: 1.25rem 1.5rem;
+    background: #fffdf8;
     border: 1px solid #ddd2bc;
     border-left: 4px solid #3e6b4d;
     border-radius: 8px;
-    background: #fffdf8;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(74, 53, 36, 0.08);
 }
 
-.conteudo article h2,
-.conteudo article h3 {
-    margin-top: 0;
+.conteudo article:has(ul) h3 {
+    margin: 0 0 0.6rem;
+    font-size: 1.15rem;
 }
 
+.conteudo article:has(ul) ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.conteudo article:has(ul) li {
+    margin: 0.35rem 0;
+    overflow-wrap: anywhere;
+}
+
+.span {
+    color: #e58b38;
+}
+.time {
+    color: #005b35;
+}
 
 /* Rodapé */
 
